@@ -45,8 +45,20 @@ public class EmployeeOperationsTest {
         int employeeId = createdEmployee.getData().getId();
         log.info( "Verify employee with ID - " + employeeId + " and name - " + name );
         Employee employee = employeeRestService.getEmployeeById( employeeId );
-        assertEquals( employee.getData().getId(), new Integer( employeeId ), "The employee with ID - " + employeeId + " is not in the system." );
-        assertEquals( employee.getData().getEmployeeName(), name, "The employee named " + name + " is not in the system." );
+        if ( employee.getData() != null ) {
+            assertEquals(
+                    employee.getData().getId(),
+                    new Integer( employeeId ),
+                    "The employee with ID - " + employeeId + " is not in the system."
+            );
+            assertEquals(
+                    employee.getData().getEmployeeName(),
+                    name,
+                    "The employee named " + name + " is not in the system."
+            );
+        } else {
+            fail( "The employee with ID - " + employeeId + " is not in the system." );
+        }
     }
 
     @Test
@@ -59,8 +71,16 @@ public class EmployeeOperationsTest {
         assertEquals( createdEmployee.getData().getName(), name, "The employee named " + name + " is not updated" );
         log.info( "Verify that employee name with ID - " + employeeId + " changed to - " + name );
         Employee employee = employeeRestService.getEmployeeById( employeeId );
-        assertEquals( employee.getData().getId(), new Integer( employeeId ), "The employee with ID - " + employeeId + " is not in the system." );
-        assertEquals( employee.getData().getEmployeeName(), name, "The employee named " + name + " is not in the system." );
+        assertEquals(
+                employee.getData().getId(),
+                new Integer( employeeId ),
+                "The employee with ID - " + employeeId + " is not in the system."
+        );
+        assertEquals(
+                employee.getData().getEmployeeName(),
+                name,
+                "The employee named " + name + " is not in the system."
+        );
     }
 
     @Test

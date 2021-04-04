@@ -2,7 +2,6 @@
 package employeeDTO;
 
 import java.io.Serializable;
-import java.util.Optional;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
